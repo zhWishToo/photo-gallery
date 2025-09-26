@@ -286,9 +286,9 @@ header h1 {
 }
 
 .prev, .next {
-    background-color: rgba(255, 182, 193, 0.9);
-    color: white;
-    border: none;
+    background-color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     font-size: 18px;
     width: 50px;
     height: 50px;
@@ -303,21 +303,50 @@ header h1 {
     flex-shrink: 0;
     padding: 0;
     margin: 0;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    /* 移动端优化 */
+    touch-action: manipulation; /* 防止双击缩放 */
+    -webkit-tap-highlight-color: transparent; /* 移除点击高亮 */
 }
 
 .prev:hover, .next:hover {
-    background-color: rgba(255, 158, 181, 1);
+    background-color: rgba(255, 255, 255, 0.5);
     transform: scale(1.15);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    color: white;
+}
+
+/* 移动端特殊优化 */
+@media (max-width: 767px) {
+    .prev, .next {
+        width: 45px;
+        height: 45px;
+        font-size: 16px;
+        /* 增加点击区域 */
+        padding: 10px;
+        margin: 0 5px;
+    }
+    
+    .modal-controls {
+        padding: 0 10px;
+    }
+    
+    /* 为小屏幕增加额外的安全区域 */
+    .prev {
+        margin-left: 5px;
+    }
+    
+    .next {
+        margin-right: 5px;
+    }
 }
 
 .close {
     position: absolute;
     top: 20px;
     right: 20px;
-    color: #fff;
+    color: rgba(255, 255, 255, 0.9);
     font-size: 35px;
     font-weight: bold;
     cursor: pointer;
@@ -328,17 +357,33 @@ header h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(255, 182, 193, 0.9);
+    background-color: rgba(255, 255, 255, 0.3);
     border-radius: 50%;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    /* 移动端优化 */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .close:hover {
-    background-color: rgba(255, 158, 181, 1);
+    background-color: rgba(255, 255, 255, 0.5);
     transform: rotate(90deg) scale(1.1);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    color: white;
+}
+
+/* 移动端特殊优化 */
+@media (max-width: 767px) {
+    .close {
+        width: 45px;
+        height: 45px;
+        font-size: 30px;
+        top: 15px;
+        right: 15px;
+    }
 }
 
 .image-info {
