@@ -1,36 +1,10 @@
-// 照片数据数组 - 使用相对路径引用 images 文件夹中的照片
-// 确保将你的照片文件放在 images 文件夹中
+// 照片数据数组 - 使用本地示例图片
 const photos = [
-    { id: 1, src: 'images/photo1.jpg', title: '照片 1' },
-    { id: 2, src: 'images/photo2.jpg', title: '照片 2' },
-    { id: 3, src: 'images/photo3.jpg', title: '照片 3' },
-    { id: 4, src: 'images/photo4.jpg', title: '照片 4' },
-    { id: 5, src: 'images/photo5.jpg', title: '照片 5' },
-    { id: 6, src: 'images/photo6.jpg', title: '照片 6' },
-    { id: 7, src: 'images/photo7.jpg', title: '照片 7' },
-    { id: 8, src: 'images/photo8.jpg', title: '照片 8' },
-    { id: 9, src: 'images/photo9.jpg', title: '照片 9' },
-    { id: 10, src: 'images/photo10.jpg', title: '照片 10' },
-    { id: 11, src: 'images/photo11.jpg', title: '照片 11' },
-    { id: 12, src: 'images/photo12.jpg', title: '照片 12' },
-    { id: 13, src: 'images/photo13.jpg', title: '照片 13' },
-    { id: 14, src: 'images/photo14.jpg', title: '照片 14' },
-    { id: 15, src: 'images/photo15.jpg', title: '照片 15' },
-    { id: 16, src: 'images/photo16.jpg', title: '照片 16' },
-    { id: 17, src: 'images/photo17.jpg', title: '照片 17' },
-    { id: 18, src: 'images/photo18.jpg', title: '照片 18' },
-    { id: 19, src: 'images/photo19.jpg', title: '照片 19' },
-    { id: 20, src: 'images/photo20.jpg', title: '照片 20' },
-    { id: 21, src: 'images/photo21.jpg', title: '照片 21' },
-    { id: 22, src: 'images/photo22.jpg', title: '照片 22' },
-    { id: 23, src: 'images/photo23.jpg', title: '照片 23' },
-    { id: 24, src: 'images/photo24.jpg', title: '照片 24' },
-    { id: 25, src: 'images/photo25.jpg', title: '照片 25' },
-    { id: 26, src: 'images/photo26.jpg', title: '照片 26' },
-    { id: 27, src: 'images/photo27.jpg', title: '照片 27' },
-    { id: 28, src: 'images/photo28.jpg', title: '照片 28' },
-    { id: 29, src: 'images/photo29.jpg', title: '照片 29' },
-    { id: 30, src: 'images/photo30.jpg', title: '照片 30' }
+    { id: 1, src: 'images/sample1.jpg', title: '示例照片 1' },
+    { id: 2, src: 'images/sample2.jpg', title: '示例照片 2' },
+    { id: 3, src: 'images/sample3.jpg', title: '示例照片 3' },
+    { id: 4, src: 'images/sample4.jpg', title: '示例照片 4' },
+    { id: 5, src: 'images/sample5.jpg', title: '示例照片 5' }
 ];
 
 // DOM 元素
@@ -81,6 +55,9 @@ function openModal(index) {
     modal.style.display = 'block';
     document.body.style.overflow = 'hidden'; // 防止背景滚动
     
+    // 重置图片变换
+    resetImageTransform();
+    
     // 添加键盘事件监听
     document.addEventListener('keydown', handleKeyDown);
 }
@@ -112,6 +89,17 @@ function updateModalContent() {
     modalImage.src = photo.src;
     modalImage.alt = photo.title;
     imageInfo.textContent = `${photo.title} (${currentIndex + 1}/${photos.length})`;
+    
+    // 重置图片变换
+    resetImageTransform();
+}
+
+// 重置图片变换
+function resetImageTransform() {
+    scale = 1;
+    modalImage.style.transform = 'scale(1)';
+    modalImage.style.left = '0px';
+    modalImage.style.top = '0px';
 }
 
 // 处理键盘事件
@@ -132,25 +120,34 @@ function handleKeyDown(event) {
 // 触摸手势支持
 let touchStartX = 0;
 let touchEndX = 0;
+let touchStartTime = 0;
+let touchEndTime = 0;
 
 function handleTouchStart(event) {
     touchStartX = event.changedTouches[0].screenX;
+    touchStartTime = new Date().getTime();
 }
 
 function handleTouchEnd(event) {
     touchEndX = event.changedTouches[0].screenX;
+    touchEndTime = new Date().getTime();
     handleSwipeGesture();
 }
 
 function handleSwipeGesture() {
     const swipeThreshold = 50; // 最小滑动距离阈值
+    const swipeTimeThreshold = 300; // 最大滑动时间阈值（毫秒）
+    const swipeTime = touchEndTime - touchStartTime;
     
-    if (touchStartX - touchEndX > swipeThreshold) {
-        // 向左滑动，显示下一张
-        showNextPhoto();
-    } else if (touchEndX - touchStartX > swipeThreshold) {
-        // 向右滑动，显示上一张
-        showPrevPhoto();
+    // 只有在快速滑动且距离足够时才切换图片
+    if (swipeTime < swipeTimeThreshold) {
+        if (touchStartX - touchEndX > swipeThreshold) {
+            // 向左滑动，显示下一张
+            showNextPhoto();
+        } else if (touchEndX - touchStartX > swipeThreshold) {
+            // 向右滑动，显示上一张
+            showPrevPhoto();
+        }
     }
 }
 
@@ -162,8 +159,8 @@ let imgStartX, imgStartY;
 
 // 初始化图片缩放功能
 function initImageZoom() {
-    modalImage.style.transform = 'scale(1)';
-    scale = 1;
+    // 重置图片变换
+    resetImageTransform();
     
     // 双击缩放
     modalImage.addEventListener('dblclick', function(e) {

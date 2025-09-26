@@ -93,6 +93,11 @@ header h1 {
     object-fit: contain;
     border-radius: 4px;
     user-select: none;
+    /* 添加以下属性解决移动端问题 */
+    touch-action: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -ms-touch-action: none;
 }
 
 .modal-controls {
@@ -103,6 +108,9 @@ header h1 {
     justify-content: space-between;
     padding: 0 20px;
     transform: translateY(-50%);
+    /* 添加以下属性确保按钮不随图片缩放 */
+    z-index: 1001;
+    pointer-events: none;
 }
 
 .prev, .next {
@@ -110,11 +118,20 @@ header h1 {
     color: white;
     border: none;
     font-size: 24px;
-    padding: 16px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     border-radius: 50%;
     transition: background-color 0.3s;
     user-select: none;
+    pointer-events: auto;
+    /* 固定尺寸防止变形 */
+    flex-shrink: 0;
+    padding: 0;
+    margin: 0;
 }
 
 .prev:hover, .next:hover {
@@ -174,8 +191,34 @@ header h1 {
     }
     
     .prev, .next {
-        padding: 20px;
+        width: 60px;
+        height: 60px;
         font-size: 30px;
+    }
+}
+
+/* 移动端特殊优化 */
+@media (max-width: 767px) {
+    .modal-controls {
+        padding: 0 10px;
+    }
+    
+    .prev, .next {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+    
+    .close {
+        right: 15px;
+        top: 15px;
+        font-size: 30px;
+    }
+    
+    .image-info {
+        font-size: 14px;
+        bottom: 10px;
+        padding: 3px 10px;
     }
 }
 
