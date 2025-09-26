@@ -1,10 +1,39 @@
-// 照片数据数组 - 使用本地示例图片
+// 照片数据数组 - 使用imgs1文件夹中的真实照片
 const photos = [
-    { id: 1, src: 'images/sample1.jpg', title: '示例照片 1' },
-    { id: 2, src: 'images/sample2.jpg', title: '示例照片 2' },
-    { id: 3, src: 'images/sample3.jpg', title: '示例照片 3' },
-    { id: 4, src: 'images/sample4.jpg', title: '示例照片 4' },
-    { id: 5, src: 'images/sample5.jpg', title: '示例照片 5' }
+    { id: 1, src: 'imgs1/DSC_0865.JPG', title: '婚纱照片 1' },
+    { id: 2, src: 'imgs1/DSC_0871.JPG', title: '婚纱照片 2' },
+    { id: 3, src: 'imgs1/DSC_0879.JPG', title: '婚纱照片 3' },
+    { id: 4, src: 'imgs1/DSC_0885.JPG', title: '婚纱照片 4' },
+    { id: 5, src: 'imgs1/DSC_0907.JPG', title: '婚纱照片 5' },
+    { id: 6, src: 'imgs1/DSC_0912.JPG', title: '婚纱照片 6' },
+    { id: 7, src: 'imgs1/DSC_0915.JPG', title: '婚纱照片 7' },
+    { id: 8, src: 'imgs1/DSC_0922.JPG', title: '婚纱照片 8' },
+    { id: 9, src: 'imgs1/DSC_0924.JPG', title: '婚纱照片 9' },
+    { id: 10, src: 'imgs1/DSC_0926.JPG', title: '婚纱照片 10' },
+    { id: 11, src: 'imgs1/DSC_0938.JPG', title: '婚纱照片 11' },
+    { id: 12, src: 'imgs1/DSC_0970.JPG', title: '婚纱照片 12' },
+    { id: 13, src: 'imgs1/DSC_0972.JPG', title: '婚纱照片 13' },
+    { id: 14, src: 'imgs1/DSC_0979.JPG', title: '婚纱照片 14' },
+    { id: 15, src: 'imgs1/DSC_0982.JPG', title: '婚纱照片 15' },
+    { id: 16, src: 'imgs1/DSC_0983.JPG', title: '婚纱照片 16' },
+    { id: 17, src: 'imgs1/DSC_0985.JPG', title: '婚纱照片 17' },
+    { id: 18, src: 'imgs1/DSC_0986.JPG', title: '婚纱照片 18' },
+    { id: 19, src: 'imgs1/DSC_0990.JPG', title: '婚纱照片 19' },
+    { id: 20, src: 'imgs1/DSC_0993.JPG', title: '婚纱照片 20' },
+    { id: 21, src: 'imgs1/DSC_1065.JPG', title: '婚纱照片 21' },
+    { id: 22, src: 'imgs1/DSC_1068.JPG', title: '婚纱照片 22' },
+    { id: 23, src: 'imgs1/DSC_1070.JPG', title: '婚纱照片 23' },
+    { id: 24, src: 'imgs1/DSC_1072.JPG', title: '婚纱照片 24' },
+    { id: 25, src: 'imgs1/DSC_1073.JPG', title: '婚纱照片 25' },
+    { id: 26, src: 'imgs1/DSC_1076.JPG', title: '婚纱照片 26' },
+    { id: 27, src: 'imgs1/DSC_1079.JPG', title: '婚纱照片 27' },
+    { id: 28, src: 'imgs1/DSC_1080.JPG', title: '婚纱照片 28' },
+    { id: 29, src: 'imgs1/DSC_1085.JPG', title: '婚纱照片 29' },
+    { id: 30, src: 'imgs1/DSC_1087.JPG', title: '婚纱照片 30' },
+    { id: 31, src: 'imgs1/DSC_1094.JPG', title: '婚纱照片 31' },
+    { id: 32, src: 'imgs1/DSC_1095.JPG', title: '婚纱照片 32' },
+    { id: 33, src: 'imgs1/DSC_1099.JPG', title: '婚纱照片 33' },
+    { id: 34, src: 'imgs1/DSC_1105.JPG', title: '婚纱照片 34' }
 ];
 
 // DOM 元素

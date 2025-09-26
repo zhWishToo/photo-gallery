@@ -279,7 +279,7 @@ header h1 {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 0 20px;
+    padding: 0 10px; /* 减少内边距 */
     transform: translateY(-50%);
     z-index: 1001;
     pointer-events: none;
@@ -323,22 +323,11 @@ header h1 {
         width: 45px;
         height: 45px;
         font-size: 16px;
-        /* 增加点击区域 */
         padding: 10px;
-        margin: 0 5px;
     }
     
     .modal-controls {
-        padding: 0 10px;
-    }
-    
-    /* 为小屏幕增加额外的安全区域 */
-    .prev {
-        margin-left: 5px;
-    }
-    
-    .next {
-        margin-right: 5px;
+        padding: 0 5px; /* 进一步减少内边距，让按钮更靠近边缘 */
     }
 }
 
