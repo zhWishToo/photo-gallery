@@ -13,6 +13,12 @@
 <body>
     <header>
         <h1>陈婚纱相册</h1>
+        <div class="header-actions">
+            <button class="share-button" id="shareButton">
+                <span class="share-icon">↗</span>
+                分享
+            </button>
+        </div>
     </header>
     
     <main>
@@ -32,6 +38,19 @@
                 </div>
                 <div class="image-info" id="imageInfo"></div>
                 <div class="gesture-hint">← → 滑动切换图片</div>
+            </div>
+        </div>
+        
+        <!-- 分享提示框 -->
+        <div class="share-tooltip" id="shareTooltip">
+            <div class="tooltip-content">
+                <p>分享这个美好的相册给你的朋友和家人吧！</p>
+                <p>点击浏览器的分享按钮或复制下方链接：</p>
+                <div class="link-container">
+                    <input type="text" id="shareLink" readonly>
+                    <button id="copyLinkBtn">复制链接</button>
+                </div>
+                <button class="close-tooltip" id="closeTooltip">关闭</button>
             </div>
         </div>
     </main>

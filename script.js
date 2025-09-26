@@ -15,6 +15,11 @@ const closeModal = document.getElementById('closeModal');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 const imageInfo = document.getElementById('imageInfo');
+const shareButton = document.getElementById('shareButton');
+const shareTooltip = document.getElementById('shareTooltip');
+const shareLink = document.getElementById('shareLink');
+const copyLinkBtn = document.getElementById('copyLinkBtn');
+const closeTooltip = document.getElementById('closeTooltip');
 
 // 当前显示的照片索引
 let currentIndex = 0;
@@ -226,6 +231,62 @@ function initImageZoom() {
     });
 }
 
+// 分享功能
+function initShareFeature() {
+    // 设置分享链接
+    const currentUrl = window.location.href;
+    shareLink.value = currentUrl;
+    
+    // 分享按钮点击事件
+    shareButton.addEventListener('click', function() {
+        // 检查是否支持 Web Share API
+        if (navigator.share) {
+            navigator.share({
+                title: '陈婚纱相册',
+                text: '分享这个美好的婚纱相册',
+                url: currentUrl
+            }).catch(error => {
+                console.log('分享失败:', error);
+                // 如果 Web Share API 失败，则显示手动分享提示
+                showShareTooltip();
+            });
+        } else {
+            // 不支持 Web Share API，显示手动分享提示
+            showShareTooltip();
+        }
+    });
+    
+    // 复制链接按钮
+    copyLinkBtn.addEventListener('click', function() {
+        shareLink.select();
+        document.execCommand('copy');
+        
+        // 显示复制成功提示
+        const originalText = copyLinkBtn.textContent;
+        copyLinkBtn.textContent = '已复制!';
+        setTimeout(() => {
+            copyLinkBtn.textContent = originalText;
+        }, 2000);
+    });
+    
+    // 关闭提示框
+    closeTooltip.addEventListener('click', function() {
+        shareTooltip.style.display = 'none';
+    });
+    
+    // 点击背景关闭提示框
+    shareTooltip.addEventListener('click', function(e) {
+        if (e.target === shareTooltip) {
+            shareTooltip.style.display = 'none';
+        }
+    });
+}
+
+// 显示分享提示框
+function showShareTooltip() {
+    shareTooltip.style.display = 'flex';
+}
+
 // 事件监听器
 closeModal.addEventListener('click', closeModalFunc);
 prevBtn.addEventListener('click', showPrevPhoto);
@@ -246,4 +307,5 @@ modalImage.addEventListener('touchend', handleTouchEnd);
 document.addEventListener('DOMContentLoaded', function() {
     initGallery();
     initImageZoom();
+    initShareFeature();
 });
