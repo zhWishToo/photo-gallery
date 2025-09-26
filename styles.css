@@ -12,7 +12,7 @@ html, body {
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'PingFang SC', 'Microsoft YaHei', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     background: linear-gradient(135deg, #fffaf7 0%, #fff5f0 50%, #fffaf7 100%); /* 更柔和的婚纱粉背景 */
     color: #333;
     line-height: 1.6;
@@ -22,12 +22,108 @@ body {
     overflow-x: hidden;
 }
 
+/* 背景装饰元素 */
+body::before {
+    content: "";
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #ffd6e7, #ffb6c1);
+    opacity: 0.15;
+    z-index: -1;
+    animation: float 6s ease-in-out infinite;
+}
+
+body::after {
+    content: "";
+    position: absolute;
+    bottom: 15%;
+    right: 7%;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #ffc0cb, #ffaebc);
+    opacity: 0.12;
+    z-index: -1;
+    animation: float 8s ease-in-out infinite;
+}
+
+/* 添加更多装饰元素 */
+.decorative-element-1 {
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    width: 30px;
+    height: 30px;
+    border: 2px solid rgba(255, 182, 193, 0.2);
+    border-radius: 50%;
+    animation: pulse 3s ease-in-out infinite;
+}
+
+.decorative-element-2 {
+    position: absolute;
+    bottom: 25%;
+    left: 8%;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 192, 203, 0.15);
+    border-radius: 50%;
+    animation: pulse 4s ease-in-out infinite;
+}
+
+/* 动画效果 */
+@keyframes float {
+    0% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(10px, 15px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.15;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.25;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.15;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 /* 头部样式 */
 header {
     background: linear-gradient(135deg, #ffb6c1 0%, #ff9eb5 100%); /* 婚纱粉渐变 */
     color: white;
     padding: 0.5rem 1rem;
-    box-shadow: 0 2px 10px rgba(255, 182, 193, 0.3);
+    box-shadow: 0 2px 15px rgba(255, 182, 193, 0.4);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -35,23 +131,26 @@ header {
     justify-content: space-between;
     align-items: center;
     min-height: 50px;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 header h1 {
     font-size: 1.3rem;
     font-weight: 500;
     margin: 0;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.2);
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     white-space: nowrap;
+    animation: slideIn 0.5s ease-out;
 }
 
 .share-button {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.25);
     color: white;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     padding: 0.4rem 0.8rem;
     border-radius: 20px;
     font-size: 0.8rem;
@@ -59,14 +158,17 @@ header h1 {
     display: flex;
     align-items: center;
     gap: 0.4rem;
-    transition: all 0.2s ease;
-    margin-left: auto; /* 确保按钮靠右 */
+    transition: all 0.3s ease;
+    margin-left: auto;
     z-index: 1;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .share-button:hover {
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.35);
     transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .share-icon {
@@ -83,25 +185,34 @@ header h1 {
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
+    gap: 10px;
     padding: 0;
+    animation: fadeIn 0.6s ease-out;
 }
 
 .gallery-item {
     position: relative;
     overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(255, 182, 193, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(255, 182, 193, 0.25);
     aspect-ratio: 1;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     background-color: #fff8f5;
-    border: 1px solid rgba(255, 182, 193, 0.15);
+    border: 1px solid rgba(255, 182, 193, 0.2);
+    animation: slideIn 0.5s ease-out;
+    animation-fill-mode: backwards;
 }
 
+.gallery-item:nth-child(1) { animation-delay: 0.1s; }
+.gallery-item:nth-child(2) { animation-delay: 0.2s; }
+.gallery-item:nth-child(3) { animation-delay: 0.3s; }
+.gallery-item:nth-child(4) { animation-delay: 0.4s; }
+.gallery-item:nth-child(5) { animation-delay: 0.5s; }
+
 .gallery-item:hover {
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 4px 12px rgba(255, 182, 193, 0.3);
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 8px 20px rgba(255, 182, 193, 0.4);
 }
 
 .gallery-item img {
@@ -110,11 +221,11 @@ header h1 {
     object-fit: cover;
     display: block;
     background-color: #fff8f5;
-    transition: transform 0.3s ease;
+    transition: transform 0.4s ease;
 }
 
 .gallery-item:hover img {
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
 /* 模态框样式 */
@@ -126,14 +237,10 @@ header h1 {
     top: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(255, 250, 247, 0.95) 0%, rgba(255, 245, 240, 0.95) 100%);
-    animation: fadeIn 0.2s ease;
+    background: linear-gradient(135deg, rgba(255, 250, 247, 0.98) 0%, rgba(255, 245, 240, 0.98) 100%);
+    animation: fadeIn 0.3s ease;
     touch-action: none;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    backdrop-filter: blur(5px);
 }
 
 .modal-content {
@@ -151,7 +258,7 @@ header h1 {
     max-width: 100%;
     max-height: 80%;
     object-fit: contain;
-    border-radius: 4px;
+    border-radius: 8px;
     user-select: none;
     touch-action: pinch-zoom;
     -webkit-touch-callout: none;
@@ -162,7 +269,8 @@ header h1 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
 }
 
 .modal-controls {
@@ -171,91 +279,95 @@ header h1 {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 0 10px;
+    padding: 0 20px;
     transform: translateY(-50%);
     z-index: 1001;
     pointer-events: none;
 }
 
 .prev, .next {
-    background-color: rgba(255, 182, 193, 0.8); /* 婚纱粉色按钮背景 */
+    background-color: rgba(255, 182, 193, 0.9);
     color: white;
     border: none;
     font-size: 18px;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     border-radius: 50%;
-    transition: all 0.2s;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     user-select: none;
     pointer-events: auto;
     flex-shrink: 0;
     padding: 0;
     margin: 0;
     backdrop-filter: blur(10px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .prev:hover, .next:hover {
-    background-color: rgba(255, 158, 181, 0.9); /* 悬停时的颜色 */
-    transform: scale(1.1);
+    background-color: rgba(255, 158, 181, 1);
+    transform: scale(1.15);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 .close {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 20px;
+    right: 20px;
     color: #fff;
-    font-size: 30px;
+    font-size: 35px;
     font-weight: bold;
     cursor: pointer;
     z-index: 1001;
     user-select: none;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(255, 182, 193, 0.8); /* 婚纱粉色关闭按钮 */
+    background-color: rgba(255, 182, 193, 0.9);
     border-radius: 50%;
     backdrop-filter: blur(10px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: all 0.2s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .close:hover {
-    background-color: rgba(255, 158, 181, 0.9);
-    transform: rotate(90deg);
+    background-color: rgba(255, 158, 181, 1);
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 .image-info {
     position: absolute;
-    bottom: 60px;
-    color: #5a3d40; /* 深粉红色文字 */
-    font-size: 14px;
+    bottom: 70px;
+    color: #5a3d40;
+    font-size: 15px;
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.85);
-    padding: 8px 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 10px 25px;
     border-radius: 30px;
     backdrop-filter: blur(10px);
     max-width: 80%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.3s ease-out;
 }
 
 /* 手势提示 */
 .gesture-hint {
     position: absolute;
-    bottom: 20px;
-    color: #a67c84; /* 中等粉红色提示文字 */
-    font-size: 12px;
+    bottom: 25px;
+    color: #a67c84;
+    font-size: 13px;
     text-align: center;
     width: 100%;
+    animation: fadeIn 1s ease-in-out;
 }
 
 /* 分享提示框 */
@@ -266,79 +378,97 @@ header h1 {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
     z-index: 2000;
     justify-content: center;
     align-items: center;
     animation: fadeIn 0.3s ease;
+    backdrop-filter: blur(3px);
 }
 
 .tooltip-content {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #fff 0%, #fff8f5 100%);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
     max-width: 90%;
-    width: 400px;
+    width: 450px;
     text-align: center;
+    animation: slideIn 0.4s ease-out;
+    border: 1px solid rgba(255, 182, 193, 0.3);
+}
+
+.tooltip-content h3 {
+    color: #ff9eb5;
+    margin-top: 0;
+    margin-bottom: 1rem;
 }
 
 .tooltip-content p {
     margin: 0.5rem 0;
     color: #333;
+    font-size: 0.95rem;
 }
 
 .link-container {
     display: flex;
-    margin: 1rem 0;
+    margin: 1.5rem 0;
     gap: 0.5rem;
 }
 
 #shareLink {
     flex: 1;
-    padding: 0.5rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    padding: 0.7rem;
+    border: 1px solid #ffb6c1;
+    border-radius: 8px;
     font-size: 0.9rem;
+    background-color: #fff8f5;
+    color: #333;
 }
 
 #copyLinkBtn, .close-tooltip {
-    padding: 0.5rem 1rem;
+    padding: 0.7rem 1.2rem;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 0.9rem;
-    transition: background-color 0.2s;
+    transition: all 0.3s ease;
+    font-weight: 500;
 }
 
 #copyLinkBtn {
-    background-color: #ffb6c1;
+    background: linear-gradient(135deg, #ffb6c1 0%, #ff9eb5 100%);
     color: white;
+    box-shadow: 0 3px 10px rgba(255, 158, 181, 0.3);
 }
 
 #copyLinkBtn:hover {
-    background-color: #ff9eb5;
+    background: linear-gradient(135deg, #ff9eb5 0%, #ff7aa5 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 158, 181, 0.4);
 }
 
 .close-tooltip {
     background-color: #f0f0f0;
     color: #333;
     margin-top: 0.5rem;
+    border: 1px solid #ddd;
 }
 
 .close-tooltip:hover {
     background-color: #e0e0e0;
+    transform: translateY(-2px);
 }
 
 /* 响应式设计 */
 @media (min-width: 768px) {
     .gallery-grid {
         grid-template-columns: repeat(4, 1fr);
-        gap: 12px;
+        gap: 15px;
     }
     
     header h1 {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
     }
     
     header {
@@ -350,62 +480,52 @@ header h1 {
     }
     
     .prev, .next {
-        width: 50px;
-        height: 50px;
+        width: 60px;
+        height: 60px;
         font-size: 24px;
     }
     
     .close {
-        right: 25px;
-        top: 25px;
-        font-size: 35px;
-        width: 50px;
-        height: 50px;
+        right: 30px;
+        top: 30px;
+        font-size: 40px;
+        width: 60px;
+        height: 60px;
     }
     
     .image-info {
-        font-size: 16px;
-        bottom: 30px;
+        font-size: 17px;
+        bottom: 40px;
+        padding: 12px 30px;
     }
     
     .tooltip-content {
-        width: 500px;
+        width: 550px;
+        padding: 2.5rem;
     }
     
     /* 桌面端额外装饰 */
     body::before {
-        content: "";
-        position: absolute;
-        top: 10%;
-        left: 5%;
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        background: linear-gradient(45deg, #ffd6e7, #ffb6c1);
-        opacity: 0.15;
-        z-index: -1;
+        width: 180px;
+        height: 180px;
+        top: 8%;
+        left: 4%;
     }
     
     body::after {
-        content: "";
-        position: absolute;
-        bottom: 15%;
-        right: 7%;
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-        background: linear-gradient(45deg, #ffc0cb, #ffaebc);
-        opacity: 0.12;
-        z-index: -1;
+        width: 250px;
+        height: 250px;
+        bottom: 12%;
+        right: 5%;
     }
 }
 
 /* 加载动画 */
 .loading {
     display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 3px solid rgba(255, 182, 193, 0.3);
+    width: 25px;
+    height: 25px;
+    border: 4px solid rgba(255, 182, 193, 0.3);
     border-radius: 50%;
     border-top-color: #ffb6c1;
     animation: spin 1s ease-in-out infinite;
