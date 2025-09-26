@@ -2,9 +2,13 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
     <title>照片预览 gallery</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
     <header>
@@ -27,6 +31,7 @@
                     <button class="next" id="nextBtn">&#10095;</button>
                 </div>
                 <div class="image-info" id="imageInfo"></div>
+                <div class="gesture-hint">← → 滑动切换图片</div>
             </div>
         </div>
     </main>
